@@ -14,8 +14,13 @@ Output: False
 
 def has_duplicates(product_ids):
     # Your implementation here
-    pass
+    if len(product_ids) != len(set(product_ids)):
+        return True
+    return False
 
+# I chose to use a comparison between the given list and the same list converted to a set
+# because sets do not allow any duplicates. The set will either stay the same length or be
+# smaller than the original list.
 
 """
 Problem 2: Order Manager
@@ -33,14 +38,19 @@ task_queue.remove_oldest_task() → "Email follow-up"
 class TaskQueue:
     def __init__(self):
         # Your initialization here
-        pass
+        self.tasks = []
 
     def add_task(self, task):
-        pass
+        self.tasks.append(task)
 
     def remove_oldest_task(self):
-        pass
+        if not self.tasks:
+            return None
+        return self.tasks.pop(0)
 
+# I chose to use a list for this problem because they keep elements in the same order as new
+# ones are being added. We also know that the first item in a list will be the oldest because
+# of how new items are added to lists.
 
 """
 Problem 3: Unique Value Counter
@@ -57,10 +67,14 @@ tracker.get_unique_count() → 2
 
 class UniqueTracker:
     def __init__(self):
-        pass
+        self.unique_values = set()
 
     def add(self, value):
-        pass
+        self.unique_values.add(value)
 
     def get_unique_count(self):
-        pass
+        return len(self.unique_values)
+
+# I again chose to use a set for this problem because we are only wanting unique values and
+# not duplicates. By having a set initially and adding values to that set, it will keep a single
+# copy of each unique value while ignoring any duplicate values.
